@@ -54,7 +54,7 @@ exports.updateItem = function(req, res) {
   data.sellingPrice = new Intl.NumberFormat().format(data.sellingPrice)
   data.profitPrice = new Intl.NumberFormat().format(data.profitPrice)
   
-  Item.updateOne({"_id":id}, {$set:data}, (err, result) => {
+  Item.updateOne({"_id":id}, {$set:data}, (err) => {
     if (err) return console.error(err);
     return res.status(201).send('Update Successful')
   });

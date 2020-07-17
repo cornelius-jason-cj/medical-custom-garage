@@ -13,7 +13,7 @@ exports.getUsers = function(req, res) {
     })
 }
 
-exports.getCurrentUser = function (req, res, next) {
+exports.getCurrentUser = function (req, res) {
   const user = req.body;
 
   if(!user) {
