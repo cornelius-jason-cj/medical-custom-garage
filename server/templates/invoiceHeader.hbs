@@ -1,0 +1,139 @@
+<style>
+  body {
+    margin: 0 0 0 18px;
+    padding: 0;
+    font-size: 8px;
+  }
+
+  .invoice-header {
+    margin:0;
+    width: 300px;
+    padding:0;
+   }
+
+  .kopsurat-toko {
+    margin: 0 0 5px 4px;
+    font-size: 10px;
+  }
+
+  .header-title {
+    font-weight: bold;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+  }
+
+  .customer-items{
+    width: 550px;
+    border-spacing: 0px;
+    margin:0 5px;
+  }
+
+  .customer-items td, .customer-items th {
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+    font-size: 6px;
+  }
+
+  .width-no {
+    width: 28px;
+  }
+
+  .width-barcode {
+    width: 50px;
+  }
+
+  .width-harga {
+    width: 90px;
+  }
+
+  .width-qty {
+    width: 30px;
+  }
+
+  .customer-information tr .customer-information td{
+    font-size: 6px;
+  }
+
+  .position-left {
+    text-align: left;
+  }
+
+  .position-center {
+    text-align: center;
+  }
+
+  .position-right {
+    text-align: right;
+  }
+</style>
+<html>
+  <body>
+    <div class="invoice-header">
+      <div class="kopsurat-toko">
+        <span class="header-title">Faktur Penjualan - MEDICAL CUSTOM</span><br>
+        <span>Jl. Raya Daan Mogot KM 12,5</span><br>
+        <span>Telp: 021-1234567 | 0812-4567-890</span> 
+      </div>
+
+      <div class="grid-container">
+        <div>
+          <table class="customer-information">
+            <tr>
+              <td>Invoice Number</td>
+              <td>:</td>
+              <td>{{ invoiceNumber }}</td>
+            </tr>
+            <tr>
+              <td>Customer</td>
+              <td>:</td>
+              <td>{{ customerName }}</td>
+            </tr>
+            <tr>
+              <td>Alamat</td>
+              <td>:</td>
+              <td>{{ customerAddress }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div>
+          <table class="customer-information">
+            <tr>
+              <td>Operator</td>
+              <td>:</td>
+              <td>{{ operator }}</td>
+            </tr>
+            <tr>
+              <td>Tanggal</td>
+              <td>:</td>
+              <td>{{ createdAt }}</td>
+            </tr>
+            <tr>
+              <td>Telp</td>
+              <td>:</td>
+              <td>{{ customerPhone }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      {{!-- <div>
+        <table class="customer-items">
+            <thead>
+              <th class="position-center width-no">No</th>
+              <th class="position-left width-barcode">Barcode</th>
+              <th class="position-left">Nama Barang</th>
+              <th class="position-right width-harga">Harga</th>
+              <th class="position-right width-qty">QTY</th>
+              <th class="position-right">Subtotal</th>
+          </thead>
+        </table>
+      </div> --}}
+
+    </div>
+  </body>
+</html>

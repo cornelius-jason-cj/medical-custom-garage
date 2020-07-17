@@ -1,0 +1,198 @@
+<style>
+  body {
+    font-size: 12px;
+    padding: 0;
+  }
+  
+  #tableBox {
+  }
+  
+  .customer-items{
+    font-family: Arial;
+    width: 778px;
+    border-spacing: 0px;
+    font-size: 14px;
+  }
+
+  .grid-container-sign {
+    width: 100%;
+    height: 150vh;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: cornflowerblue;
+  }
+
+  .customer-items td, .customer-items th {
+    border-bottom: 1px solid #cecece;
+  }
+
+  .width-no {
+    width: 38px;
+  }
+
+  .width-barcode {
+    width: 70px;
+  }
+
+  .width-itemName {
+    width: 288px;
+    padding-left: 10px;
+  }
+
+  .width-sellingPrice {
+    width: 125px;
+  }
+
+  .width-qty {
+    width: 38px;
+  }
+
+  .position-left {
+    text-align: left;
+  }
+
+  .position-center {
+    text-align: center;
+  }
+
+  .position-right {
+    text-align: right;
+  }
+
+  #lastData {
+    font-family: Arial;
+    display: flex;
+  }
+
+  .ttd {
+    width: 250px;
+    text-align: center;
+  }
+
+  #hormatKami {
+    font-size: 16px;
+  }
+
+  #medicalCustom{
+    font-size: 14px;
+  }
+
+  #pembeli {
+    font-size: 16px;
+  }
+
+  #customerName {
+    font-size: 14px;
+  }
+
+  .total {
+    width: 280px;
+  }
+
+  #totalBelanja {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #totalBelanjaAmount{
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #totalDP {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #totalDPAmount{
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #sisahPembayaran {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #sisahPembayaranAmount{
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+</style>
+<html>
+  <body>
+    <div>
+      <div id="tableBox">
+      <table class="customer-items">
+          <thead>
+            <th class="position-center width-no">No</th>
+            <th class="position-left width-barcode">Barcode</th>
+            <th class="position-left">Nama Barang</th>
+            <th class="position-right width-harga">Harga</th>
+            <th class="position-right width-qty">QTY</th>
+            <th class="position-right">Subtotal</th>
+          </thead>
+        {{#each items as |item|}}
+          {{#showData nth=12}}
+            <tr>
+              <td class="position-center width-no">{{ inc @index }}</td>
+              <td class="position-left width-barcode">{{ item.barcode }}</td>
+              <td class="position-left width-itemName">{{ item.itemName }}</td>
+              <td class="position-right width-sellingPrice">{{ item.sellingPrice }}</td>
+              <td class="position-right width-qty">{{ item.quantity }}</td>
+              <td class="position-right">{{ item.line_total}}</td>
+            </tr>
+          {{/showData}}
+          {{#dataLimit nth=12}}
+            <tr style="height:110px"></tr>
+            <thead>
+              <th class="position-center width-no">No</th>
+              <th class="position-left width-barcode">Barcode</th>
+              <th class="position-left">Nama Barang</th>
+              <th class="position-right width-harga">Harga</th>
+              <th class="position-right width-qty">QTY</th>
+              <th class="position-right">Subtotal</th>
+            </thead>
+            <tr>
+              <td class="position-center width-no">{{ inc @index }}</td>
+              <td class="position-left width-barcode">{{ item.barcode }}</td>
+              <td class="position-left width-itemName">{{ item.itemName }}</td>
+              <td class="position-right width-sellingPrice">{{ item.sellingPrice }}</td>
+              <td class="position-right width-qty">{{ item.quantity }}</td>
+              <td class="position-right">{{ item.line_total}}</td>
+            </tr>
+          {{/dataLimit}}
+          {{#lastData}}
+          </table>
+            <div id="lastData" style="margin-top: {{ margin }}">
+              <div class="ttd">
+                <span id="hormatKami">Hormat Kami</span>
+                <br>
+                <span id="medicalCustom">( MEDICAL CUSTOM)</span>
+              </div>
+              <div class="ttd">
+                <span id="pembeli">Pembeli</span>
+                <br>
+                <span id="customerName">{{ customerName }}</span>
+              </div>
+              <div class="total">
+                <span id="totalBelanja">Total</span>
+                <span id="totalBelanjaAmount">{{ totalBelanja }}</span>
+                <br>
+                <span id="totalDP">DP</span>
+                <span id="totalDPAmount">{{ totalDP }}</span>
+                <br>
+                <span id="sisahPembayaran">Sisah Pembayaran</span>
+                <span id="sisahPembayaranAmount">{{sisahPembayaran}}</span>
+              </div>
+            </div>
+          {{/lastData}}
+        {{/each}}
+      </div>
+    </div>
+  </body>
+</html>
