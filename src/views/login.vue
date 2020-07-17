@@ -75,7 +75,6 @@ import { required } from 'vuelidate/lib/validators'
       login () {
         this.$v.form.$touch()
         this.$store.dispatch('auth/loginWithEmailAndPassword', this.form)
-        .then(()=> this.$store.dispatch('auth/getAuthUser'))
         .then(() => this.$router.push('/home'))
         .catch((err) => console.log(err))
       }

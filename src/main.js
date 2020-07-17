@@ -6,9 +6,7 @@ import vuetify from './plugins/vuetify'
 import vuelidate from 'vuelidate'
 import axios from 'axios'
 
-console.log(process.env.VUE_APP_URI)
-console.log(process.env.production.VUE_APP_URI)
-axios.defaults.baseURL = 'http://localhost:5000'
+axios.defaults.baseURL = process.env.VUE_APP_URI
 
 Vue.config.productionTip = false
 

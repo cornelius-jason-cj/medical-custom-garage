@@ -62,7 +62,7 @@ export default new Vuex.Store({
         arrayHarga.push(parseInt(data.purchasePrice))
       })
       const reducer = (accumulator, currentValue) => accumulator + currentValue
-      let totalHarga = arrayHarga.reduce(reducer)
+      let totalHarga = arrayHarga.length > 0 ? arrayHarga.reduce(reducer) : 0
       totalHarga = totalHarga.toString()
       state.belanjaList = belanjaList
       state.totalBelanja = totalHarga

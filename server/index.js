@@ -53,14 +53,14 @@ app.use('/api/profit', profitRoutes);
 app.use('/api/belanja', belanjaRoutes);
 app.use('/api/user', userRoutes);
 
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   const appPath = path.join(__dirname, '..', 'dist');
   app.use(express.static(appPath));
 
   app.get('*', function(req, res) {
     res.sendFile(path.resolve(appPath, 'index.html'));
   });
-}
+// }
 
 
 const port = process.env.PORT || 5000;
