@@ -62,7 +62,7 @@ exports.postInvoice = async function(req, res) {
     return hbs.compile(html)(data);
   };
 
-  hbs.registerHelper("inc", (value, options) => {
+  hbs.registerHelper("inc", (value) => {
     return parseInt(value) + 1;
   })
 
@@ -227,17 +227,17 @@ exports.updateInvoice = async function(req, res) {
       await new Profit({profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount}).save((err) => {
         if (err) return console.error(err);
       })
-      Invoice.updateOne({"_id":id}, {paymentStatus: 'Lunas'}, (err, result) => {
+      Invoice.updateOne({"_id":id}, {paymentStatus: 'Lunas'}, (err) => {
         if (err) return console.error(err);
         return res.status(201).send('Update Successful')
       });
     }
 
     if (profitId) {
-      await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err, result) => {
+      await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err) => {
         if(err) return console.error(err);
       })
-      Invoice.updateOne({"_id":id}, {paymentStatus: 'Lunas'}, (err, result) => {
+      Invoice.updateOne({"_id":id}, {paymentStatus: 'Lunas'}, (err) => {
         if (err) return console.error(err);
         return res.status(201).send('Update Successful')
       });
@@ -258,10 +258,10 @@ exports.updateInvoice = async function(req, res) {
     totalBelanjaSebelumnya = totalBelanjaSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
     totalBelanjaTambahanAmount = parseInt(totalBelanjaSebelumnya) - parseInt(belanjaTambahan)
 
-    await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err, result) => {
+    await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err) => {
       if(err) return console.error(err);
     })
-    Invoice.updateOne({"_id":id}, {paymentStatus: 'Belum Lunas'}, (err, result) => {
+    Invoice.updateOne({"_id":id}, {paymentStatus: 'Belum Lunas'}, (err) => {
       if (err) return console.error(err);
       return res.status(201).send('Update Successful')
     });
