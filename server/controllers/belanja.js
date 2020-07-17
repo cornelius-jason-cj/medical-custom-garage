@@ -13,14 +13,12 @@ exports.getBelanja = function(req, res) {
 }
 
 exports.postBelanja = function(req, res) {
-  console.log("exports.postItem -> req.body", req.body)
 
   const data = new Belanja({
     itemName: req.body.itemName,
     purchasePrice: req.body.purchasePrice,
   })
-  console.log("exports.postItem -> data", data)
-
+  
   data.save((err) => {
     if (err) return console.error(err);
 

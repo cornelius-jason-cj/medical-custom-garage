@@ -303,7 +303,7 @@ import axios from 'axios'
     },
     methods: {
       initialize () {
-        axios.get('http://localhost:5000/api/items')
+        axios.get('/api/items')
         .then(res => {
           this.stockItems = res.data
 
@@ -418,7 +418,7 @@ import axios from 'axios'
         }
       },
       printInvoice(){
-        axios.post('http://localhost:5000/api/invoice', {
+        axios.post('/api/invoice', {
           invoiceNumber: this.invoice_information.invoiceNumber,
           customerName: this.invoice_information.customerName,
           customerAddress: this.invoice_information.customerAddress,

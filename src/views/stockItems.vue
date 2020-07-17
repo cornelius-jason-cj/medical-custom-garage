@@ -158,7 +158,7 @@ import axios from 'axios'
     },
     methods: {
       initialize () {
-          axios.get('http://localhost:5000/api/items')
+          axios.get('/api/items')
           .then(res => {
             this.spareparts = res.data
           })
@@ -177,7 +177,7 @@ import axios from 'axios'
       deleteItem (item) {
         const id = item._id
         confirm('Are you sure you want to delete this item?')
-        axios.delete(`http://localhost:5000/api/items/${id}`)
+        axios.delete(`/api/items/${id}`)
         this.initialize()
       },
       close () {
@@ -192,7 +192,7 @@ import axios from 'axios'
         if (this.editedIndex > -1) {
           Object.assign(this.spareparts[this.editedIndex], this.editedItem)
           const id = this.editedItem._id
-          axios.put(`http://localhost:5000/api/items/${id}`, {
+          axios.put(`/api/items/${id}`, {
             barcode: this.editedItem.barcode,
             itemName: this.editedItem.itemName,
             purchasePrice: this.editedItem.purchasePrice,
@@ -200,7 +200,7 @@ import axios from 'axios'
             quantity: this.editedItem.quantity
           })
         } else {
-          axios.post('http://localhost:5000/api/items', {
+          axios.post('/api/items', {
             barcode: this.editedItem.barcode,
             itemName: this.editedItem.itemName,
             purchasePrice: this.editedItem.purchasePrice,

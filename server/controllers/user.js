@@ -14,9 +14,6 @@ exports.getUsers = function(req, res) {
 }
 
 exports.getCurrentUser = function (req, res, next) {
-
-  console.log('masuk ke current user')
-  console.log("exports.getCurrentUser -> req", req.body)
   const user = req.body;
 
   if(!user) {
@@ -28,7 +25,6 @@ exports.getCurrentUser = function (req, res, next) {
 
 exports.userRegister = function(req, res) {
 
-  console.log("exports.userLogin -> req.body", req.body)
   if (!req.body.username) {
     return res.status(422).json({
       errors: {
@@ -60,7 +56,6 @@ exports.userRegister = function(req, res) {
 
 exports.userLogin = function(req, res, next) {
   
-  console.log("exports.userLogin -> req.body", req.body)
   const { username, password } = req.body
   if (!username) {
     return res.status(422).json({

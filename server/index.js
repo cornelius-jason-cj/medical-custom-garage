@@ -16,11 +16,6 @@ const store = new MongoDBStore({
 
 store.on('err', (error) => console.log(error))
 
-// require('./models/belanja');
-// require('./models/invoice');
-// require('./models/items');
-// require('./models/profit');
-// require('./models/items');
 require('./services/passport');
 
 const itemRoutes = require('./routes/items')
@@ -31,7 +26,6 @@ const belanjaRoutes = require('./routes/belanja')
 const userRoutes = require('./routes/user')
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true });
-// mongoose.connect('mongodb+srv://cornelius-jason-cj:F7FFbU8l81ZDmzfl@cluster0-fpnu2.mongodb.net/bengkelDB?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));

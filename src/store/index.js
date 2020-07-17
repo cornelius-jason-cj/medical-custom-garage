@@ -24,7 +24,7 @@ export default new Vuex.Store({
   //very good spot to fetch a data. action call usualy should resolve into data
   actions: {
     fetchInvoiceList ({state, commit}) {
-      axios.get('http://localhost:5000/api/invoice')
+      axios.get('/api/invoice')
       .then(res => {
         const invoiceList = res.data
         commit('setInvoiceList', invoiceList)
@@ -32,7 +32,7 @@ export default new Vuex.Store({
       })
     },
     fetchProfitList ({state, commit}) {
-      axios.get('http://localhost:5000/api/profit')
+      axios.get('/api/profit')
       .then(res => {
         const profitList = res.data
         commit('setProfitList', profitList)
@@ -40,7 +40,7 @@ export default new Vuex.Store({
       })
     },
     fetchBelanjaList ({state, commit}) {
-      axios.get('http://localhost:5000/api/belanja')
+      axios.get('/api/belanja')
       .then(res => {
         const belanjaList = res.data
         commit('setBelanjaList', belanjaList)

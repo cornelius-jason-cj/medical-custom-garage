@@ -203,15 +203,13 @@ exports.postInvoice = async function(req, res) {
 }
   
 exports.updateInvoice = async function(req, res) {
-  console.log('masuk ke update invoice')
-  console.log("req.body", req.body)
   const {id} = req.params;
   
   let paymentStatus = req.body.paymentStatus
   let { profitId, profit, modal, belanjaTambahan, totalKeuntunganSebelumnya, totalModalSebelumnya, totalBelanjaSebelumnya } = req.body
-  
+  let totalProfitAmount, totalModalAmount, totalBelanjaTambahanAmount
+
   if ( paymentStatus === 'Belum Lunas') {
-    console.log('masuk ke Belum Lunas')
     
     profit = profit.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
     totalKeuntunganSebelumnya = totalKeuntunganSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
@@ -226,7 +224,6 @@ exports.updateInvoice = async function(req, res) {
     totalBelanjaTambahanAmount = parseInt(belanjaTambahan) + parseInt(totalBelanjaSebelumnya)
 
     if (!profitId) {
-      console.log('masuk ke !profitId')
       await new Profit({profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount}).save((err) => {
         if (err) return console.error(err);
       })
@@ -237,7 +234,6 @@ exports.updateInvoice = async function(req, res) {
     }
 
     if (profitId) {
-      console.log('masuk ke profitId')
       await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err, result) => {
         if(err) return console.error(err);
       })

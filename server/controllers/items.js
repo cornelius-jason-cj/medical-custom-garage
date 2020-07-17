@@ -26,7 +26,6 @@ exports.postItem = function(req, res) {
   data.sellingPrice = new Intl.NumberFormat().format(data.sellingPrice)
   data.profitPrice = new Intl.NumberFormat().format(data.profitPrice)
 
-  console.log("exports.updateItem -> data", data)
   data.save((err) => {
     if (err) return console.error(err);
 
@@ -46,7 +45,6 @@ exports.updateItem = function(req, res) {
     profitPrice: req.body.profitPrice,
     updatedAt: new Date()
   }
-  console.log("exports.updateItem -> data", data)
   
   data.purchasePrice = data.purchasePrice.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
   data.sellingPrice = data.sellingPrice.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');

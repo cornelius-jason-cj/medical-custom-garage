@@ -235,7 +235,7 @@ import axios from 'axios'
         this.initialize()
       },
       save () {
-        axios.post('http://localhost:5000/api/belanja', {
+        axios.post('/api/belanja', {
           itemName: this.editedItem.itemName,
           purchasePrice: this.editedItem.purchasePrice
         })
@@ -251,7 +251,7 @@ import axios from 'axios'
         const totalModalSebelumnya = this.profitList.length === 0 ? '0' : this.profitList[0].modalAmount
 
         if (confirm(`Apakah anda ingin mengganti status menjadi ${newPaymentStatus}?`)){
-          axios.put(`http://localhost:5000/api/invoice/${id}`, {
+          axios.put(`/api/invoice/${id}`, {
             profitId,
             profit : this.editedItem.keuntungan,
             modal: this.editedItem.modal,
