@@ -432,7 +432,7 @@ import axios from 'axios'
         })
         let fileName = 'INV'+this.invoice_information.invoiceNumber+'-'+this.invoice_information.customerName+'-'+this.date+'.pdf';
         setTimeout(() => {
-          window.open(`http://127.0.0.1:8887/${fileName}`)
+          window.open(`../../server/invoiceList/${fileName}`)
         }, 1000)
       }
     }
