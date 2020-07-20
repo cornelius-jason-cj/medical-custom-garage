@@ -52,11 +52,12 @@ exports.postInvoice = async function(req, res) {
   let currentPage = 1
   let totalPage = Math.ceil(lastIndex / 12)
 
-  process.chdir('./server')
+  // process.chdir('./server')
   
   const compileHtml = async function (templateName, data) {
     
     const filePath = path.join(process.cwd(), 'templates', `${templateName}.hbs`);
+    console.log("filePath", filePath)
     const html = await fs.readFile(filePath, 'utf-8');
 
     return hbs.compile(html)(data);
