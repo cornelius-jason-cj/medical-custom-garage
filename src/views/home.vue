@@ -113,6 +113,16 @@
           class="elevation-1"
         >
 
+        <template v-slot:item.invoiceNumber="{ item }">
+          <v-chip
+          color="white"
+            @click="openInvoice(item.invoiceNumber)"
+          >
+            {{ item.invoiceNumber }}
+          </v-chip>
+        </template>
+
+
         <template v-slot:item.total="{ item }">
             {{ formatPrice(item.total) }}
         </template>
@@ -149,7 +159,6 @@
 </template>
 
 <script>
-
 import TheNavbar from '@/components/TheNavbar'
 import axios from 'axios'
   export default {
@@ -212,6 +221,26 @@ import axios from 'axios'
         this.$store.dispatch('fetchInvoiceList')
         this.$store.dispatch('fetchProfitList')
         this.$store.dispatch('fetchBelanjaList')
+      },
+      openInvoice(value){
+        console.log('path: ', window.location.pathname)
+        console.log("openInvoice -> value", value)
+        // axios({
+        //   url:`/server/invoiceList/${value}.pdf`,
+        //   method:'GET',
+        //   responseType: 'blob'
+        // }). then((response) => {
+        //   console.log("openInvoice -> response", response)
+        //   let fileURL = window.URL.createObjectURL(new Blob([response.data]));
+        //   let fileLink = document.createElement('a');
+
+        //   fileLink.href = fileURL;
+        //   fileLink.setAttribute('download', 'file.pdf');
+        //   document.body.appendChild(fileLink);
+
+        //   fileLink.click();
+        // })
+          window.open(`http://127.0.0.1:8887/server/invoiceList/${value}.pdf`)
       },
       formatPrice(value) {
         if (value === null || value === 0) {

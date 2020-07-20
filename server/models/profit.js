@@ -11,8 +11,7 @@ const profitSchema = new Schema({
     required: true
   },
   belanjaTambahanAmount: {
-    type: String,
-    required: true
+    type: String
   },
   createdAt: {
     type: Date,

@@ -206,6 +206,7 @@ exports.postInvoice = async function(req, res) {
 exports.updateInvoice = async function(req, res) {
   const {id} = req.params;
   
+  console.log("req.body", req.body)
   let paymentStatus = req.body.paymentStatus
   let { profitId, profit, modal, belanjaTambahan, totalKeuntunganSebelumnya, totalModalSebelumnya, totalBelanjaSebelumnya } = req.body
   let totalProfitAmount, totalModalAmount, totalBelanjaTambahanAmount
@@ -220,9 +221,9 @@ exports.updateInvoice = async function(req, res) {
     totalModalSebelumnya = totalModalSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
     totalModalAmount = parseInt(modal) + parseInt(totalModalSebelumnya)
 
-    belanjaTambahan = belanjaTambahan.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
-    totalBelanjaSebelumnya = totalBelanjaSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
-    totalBelanjaTambahanAmount = parseInt(belanjaTambahan) + parseInt(totalBelanjaSebelumnya)
+    // belanjaTambahan = belanjaTambahan.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
+    // totalBelanjaSebelumnya = totalBelanjaSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
+    // totalBelanjaTambahanAmount = parseInt(belanjaTambahan) + parseInt(totalBelanjaSebelumnya)
 
     if (!profitId) {
       await new Profit({profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount}).save((err) => {
@@ -235,7 +236,7 @@ exports.updateInvoice = async function(req, res) {
     }
 
     if (profitId) {
-      await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err) => {
+      await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount},(err) => {
         if(err) return console.error(err);
       })
       Invoice.updateOne({"_id":id}, {paymentStatus: 'Lunas'}, (err) => {
@@ -255,11 +256,11 @@ exports.updateInvoice = async function(req, res) {
     totalModalSebelumnya = totalModalSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
     totalModalAmount = parseInt(totalModalSebelumnya) - parseInt(modal)
     
-    belanjaTambahan = belanjaTambahan.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
-    totalBelanjaSebelumnya = totalBelanjaSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
-    totalBelanjaTambahanAmount = parseInt(totalBelanjaSebelumnya) - parseInt(belanjaTambahan)
+    // belanjaTambahan = belanjaTambahan.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
+    // totalBelanjaSebelumnya = totalBelanjaSebelumnya.replace(new RegExp('\\'+(1111).toLocaleString().replace(/1/g,''),'g'),'');
+    // totalBelanjaTambahanAmount = parseInt(totalBelanjaSebelumnya) - parseInt(belanjaTambahan)
 
-    await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount, belanjaTambahanAmount: totalBelanjaTambahanAmount},(err) => {
+    await Profit.updateOne({"_id":profitId},{profitAmount: totalProfitAmount, modalAmount: totalModalAmount},(err) => {
       if(err) return console.error(err);
     })
     Invoice.updateOne({"_id":id}, {paymentStatus: 'Belum Lunas'}, (err) => {
